@@ -9,6 +9,5 @@ http://ffmpeg.zeranoe.com/builds/
 There are 2 Editable settings at the top of the script.
 
 
-%ffmpeg% Can be changed to wherever ffmpeg is located. The default location is in the same directory as FFMPEG-Helper.
-
+%ffmpeg% Can be changed to wherever ffmpeg is located. The default is in the same directory as FFMPEG-Helper.
 %custom% Can be changed to any directory and acts as a shortcut for a commonly used output directory.
