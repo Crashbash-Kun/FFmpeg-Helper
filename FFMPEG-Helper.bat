@@ -21,26 +21,43 @@ Choice /C SMC /N
 cls
 if %errorlevel%==3 (
 set output=%custom%
-goto operation
+goto FileName
  )
 if %errorlevel%==2 (
-echo Specify Location:
+Echo Specify Location [MUST have \ at end]:
+Echo IE: C:\Users\
 set /p output=
-goto operation
+goto FileName
  )
 if %errorlevel%==1 (
-call :setfile %input%
-:Return
-goto operation
+call :setpath %input%
+:ReturnPath
+goto FileName
  ) 
- 
- 
- 
-:operation
+
+
+
+:FileName
+cls
+Echo Using Input File:       %input%
+Echo Using Output Directory: "%output%"
+Echo.
+Echo Filename (NO extention) of output file
+Echo Leave blank for same as input file
+echo.
+set /p filename=
+if [%filename%] == [] ( 
+call :setfile %input%
+ )
+:ReturnFile
+set output="%output%%filename%"
+
+
+
 cls
 set "errorlevel=" 			REM Clears the Variable
-Echo Using Input File:       %input%
-Echo Using Output Directory: %output%
+Echo Using Input  File: %input%
+Echo Using Output File: %output%
 Echo.
 Echo (1) Extract Audio Track
 Echo () Extract Video Track
@@ -63,13 +80,17 @@ goto AudioExtract
 
 
 :AudioExtract
+cls
 Set /p codec=Codec (mp3,ogg,flac,ect):=
 set /p bitrate=bitrate in kilobytes (128,192,320,ect):=
 %ffmpeg% -i %input% -vn -ac 2 -ab %bitrate%k -f %codec% %output%.%codec%
 
-pause
 
-goto :eof
-:setfile
+
+exit
+:setpath
 set output=%~dp1
-goto Return
+goto ReturnPath
+:setfile
+set filename=%~n1
+goto ReturnFile
