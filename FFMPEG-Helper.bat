@@ -1,4 +1,5 @@
 @echo off
+set ffmpeg="./ffmpeg.exe"
 set custom=D:\
 set input=%1
 
@@ -10,6 +11,7 @@ set /p input=File:
  )
 cls
 Echo Using Input File: %input%
+Echo.
 Echo Select Output Location:
 set "errorlevel=" 			REM Clears the Variable
 Echo (S)ame as Input
@@ -17,11 +19,11 @@ Echo (M)anually given Location
 Echo (C)ustom Set Location: %custom%
 Choice /C SMC /N
 cls
-if %errorlevel==3 (
+if %errorlevel%==3 (
 set output=%custom%
 goto operation
  )
-if %errorlevel==2 (
+if %errorlevel%==2 (
 echo Specify Location:
 set /p output=
 goto operation
@@ -35,17 +37,37 @@ goto operation
  
  
 :operation
-echo %output%
-pause
+cls
+set "errorlevel=" 			REM Clears the Variable
+Echo Using Input File:       %input%
+Echo Using Output Directory: %output%
+Echo.
+Echo (1) Extract Audio Track
+Echo () Extract Video Track
+Echo ()
+Echo ()
+Echo ()
+Echo ()
+Echo ()
+Echo ()
+Echo ()
+Echo ()
+Choice /C 1 /N
+
+
+
+if %errorlevel%==1 (
+goto AudioExtract
+ ) 
 
 
 
 :AudioExtract
-Set /p codec=Codec (mp3,ogg,flac,ect)=
-set /p bitrate=bitrate in k (128,192,320,ect)=
-ffmpeg -i %input% -vn -ac 2 -ab %bitrate%k -f %codec% %1.%codec%
+Set /p codec=Codec (mp3,ogg,flac,ect):=
+set /p bitrate=bitrate in kilobytes (128,192,320,ect):=
+%ffmpeg% -i %input% -vn -ac 2 -ab %bitrate%k -f %codec% %output%.%codec%
 
-
+pause
 
 goto :eof
 :setfile
