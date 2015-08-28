@@ -7,12 +7,14 @@ If NOT exist %FFMPEG% (
 ECHO FFMPEG NOT FOUND.
 ECHO Settings currently point at %ffmpeg%
 ECHO.
-Echo Read the Github page for a download of ffpeg.
+Echo Read the Github page.
 Echo Or if ffmpeg is avaliable, make sure the ffmpeg variable points to ffmpeg.
 Echo For example: set ffmpeg="C:\Program Files\ffmpeg\ffmpeg.exe"
+Echo A browser will be opened with the download for ffmpeg.
 echo.
 Echo Press Any Key To Exit.
 pause>nul
+start http://ffmpeg.zeranoe.com/builds/
 exit
  )
 
