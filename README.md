@@ -3,6 +3,8 @@ Batch Based tool for making life easy when using the Audio/Video Swiss Army Knif
 
 Not sure how to get working? Copy all the code as into notepad and save it as "FFMPEG-Helper.bat". (Also really?)
 
+Or if you're so inclined, wait for a release. Probably coming soon.
+
 Download The Latest FFMPEG.EXE HERE:
 http://ffmpeg.zeranoe.com/builds/
 
