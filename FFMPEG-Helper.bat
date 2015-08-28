@@ -3,7 +3,18 @@ set ffmpeg="./ffmpeg.exe"
 set custom=D:\
 set input=%1
 
-
+If NOT exist %FFMPEG% (
+ECHO FFMPEG NOT FOUND.
+ECHO Settings currently point at %ffmpeg%
+ECHO.
+Echo Read the Github page for a download of ffpeg.
+Echo Or if ffmpeg is avaliable, make sure the ffmpeg variable points to ffmpeg.
+Echo For example: set ffmpeg="C:\Program Files\ffmpeg\ffmpeg.exe"
+echo.
+Echo Press Any Key To Exit.
+pause>nul
+exit
+ )
 
 if [%input%] == [] ( 
 Echo No file given. Specify either manually or via drag and drop an input file:
